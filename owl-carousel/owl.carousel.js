@@ -135,13 +135,13 @@
 		 * @protected
 		 */
 		this._drag = {
-			time: null,
-			target: null,
+			time:    null,
+			target:  null,
 			pointer: null,
 			stage: {
-				start: null,
-				current: null
-			},
+				 start:   null,
+				 current: null
+			       },
 			direction: null
 		};
 
@@ -184,28 +184,28 @@
 	 * @public
 	 */
 	Owl.Defaults = {
-		items: 3,
-		loop: false,
+		items:  1,
+		loop:   false,
 		center: false,
 		rewind: false,
 
 		mouseDrag: true,
 		touchDrag: true,
-		pullDrag: true,
-		freeDrag: false,
-
-		margin: 0,
+		pullDrag:  true,
+		freeDrag:  false,
+                
+		margin:       0,
 		stagePadding: 0,
 
-		merge: false,
-		mergeFit: true,
+		merge:     false,
+		mergeFit:  true,
 		autoWidth: false,
 
 		startPosition: 0,
-		rtl: false,
+		rtl:           false,
 
-		smartSpeed: 250,
-		fluidSpeed: false,
+		smartSpeed:   250,
+		fluidSpeed:   false,
 		dragEndSpeed: false,
 
 		responsive: {},
@@ -217,19 +217,19 @@
 		info: false,
 
 		nestedItemSelector: false,
-		itemElement: 'div',
+		itemElement:  'div',
 		stageElement: 'div',
 
-		refreshClass: 'owl-refresh',
-		loadedClass: 'owl-loaded',
-		loadingClass: 'owl-loading',
-		rtlClass: 'owl-rtl',
+		refreshClass:    'owl-refresh',
+		loadedClass:     'owl-loaded',
+		loadingClass:    'owl-loading',
+		rtlClass:        'owl-rtl',
 		responsiveClass: 'owl-responsive',
-		dragClass: 'owl-drag',
-		itemClass: 'owl-item',
-		stageClass: 'owl-stage',
+		dragClass:       'owl-drag',
+		itemClass:       'owl-item',
+		stageClass:      'owl-stage',
 		stageOuterClass: 'owl-stage-outer',
-		grabClass: 'owl-grab'
+		grabClass:       'owl-grab'
 	};
 
 	/**
@@ -240,8 +240,8 @@
 	 */
 	Owl.Width = {
 		Default: 'default',
-		Inner: 'inner',
-		Outer: 'outer'
+		Inner:   'inner',
+		Outer:   'outer'
 	};
 
 	/**
@@ -3249,6 +3249,42 @@
 
 		return result;
 	}
+
+function setOwlStageHeight(event) {
+    var maxHeight = 0;
+    $('.owl-item.active').each(function () { // LOOP THROUGH ACTIVE ITEMS
+        var thisHeight = parseInt( $(this).height() );
+        maxHeight=(maxHeight>=thisHeight?maxHeight:thisHeight);
+    });
+    $('.owl-carousel').css('height', maxHeight );
+    $('.owl-stage-outer').css('height', maxHeight ); // CORRECT DRAG-AREA SO BUTTONS ARE CLICKABLE
+}
+
+
+/*
+function updateSize($carousel) {
+  var maxHeight = 0;
+
+  $('.owl-item', $carousel).each(function () {
+    var $this = $(this);
+    var $image = $this.find('img');
+
+    //Max height
+    var prevHeight = $this.height();
+    var thisHeight = $this.height('auto').height();
+    $this.height(prevHeight);
+    maxHeight = (maxHeight > thisHeight ? maxHeight : thisHeight);
+
+    //Set image as background
+    var imageSource = $image.attr('src');
+    $this.css('backgroundImage', 'url(' + imageSource + ')');
+  });
+
+  //Set equal height
+  $('.owl-item', $carousel).height(maxHeight);
+}
+*/
+
 
 	function prefixed(property) {
 		return test(property, true);
